@@ -24,6 +24,7 @@ public class Order {
 	
 	private LocalDateTime dateOrder;
 	
+	
 	@ManyToOne
 	@JsonIgnoreProperties("order")
 	private Client client;
@@ -32,6 +33,8 @@ public class Order {
 	@JsonIgnoreProperties("order")
 	private Product product;
 
+	private Double totalValue;
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,6 +65,14 @@ public class Order {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Double getTotalValue() {
+		return totalValue;
+	}
+
+	public void setTotalValue(Double totalValue) {
+		this.totalValue = totalValue;
 	}
 	
 	
