@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lanchonete.client.model.Client;
+import com.lanchonete.product.model.Product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -25,6 +27,10 @@ public class Order {
 	@ManyToOne
 	@JsonIgnoreProperties("order")
 	private Client client;
+	
+	@ManyToMany
+	@JsonIgnoreProperties("order")
+	private Product product;
 
 	public Long getId() {
 		return id;
@@ -48,6 +54,14 @@ public class Order {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	
 	
