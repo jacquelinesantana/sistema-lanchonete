@@ -26,6 +26,8 @@ public class Product {
 	
 	private String description;
 	
+	private Double price;
+	
 	@NotEmpty(message="The atribute Name can't to be empty")
 	private String category;
 	
@@ -49,6 +51,14 @@ public class Product {
 		this.name = name;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -56,6 +66,7 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 
 	public String getCategory() {
 		return category;
