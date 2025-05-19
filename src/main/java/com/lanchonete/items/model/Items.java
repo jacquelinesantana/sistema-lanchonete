@@ -1,5 +1,7 @@
 package com.lanchonete.items.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lanchonete.order.model.Order;
 import com.lanchonete.product.model.Product;
@@ -38,6 +40,7 @@ public class Items {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public Order getOrder() {
 		return order;

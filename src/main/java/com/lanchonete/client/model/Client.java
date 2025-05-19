@@ -1,5 +1,7 @@
 package com.lanchonete.client.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lanchonete.order.model.Order;
 
@@ -28,7 +30,7 @@ public class Client {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade=CascadeType.REMOVE)
 	@JsonIgnoreProperties("client")
-	private Order order;
+	private List<Order> order;
 
 	public Long getId() {
 		return id;
@@ -54,13 +56,15 @@ public class Client {
 		this.document = document;
 	}
 
-	public Order getOrder() {
+	public List<Order> getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(List<Order> order) {
 		this.order = order;
 	}
-    
+
+	
+
 	
 }

@@ -1,7 +1,9 @@
 package com.lanchonete.product.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.lanchonete.order.model.Order;
+import com.lanchonete.items.model.Items;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,7 +11,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -33,9 +35,9 @@ public class Product {
 	@NotEmpty(message="The atribute Name can't to be empty")
 	private String category;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade=CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade=CascadeType.REMOVE)
 	@JsonIgnoreProperties("product")
-	private Order order;
+	private List<Items> items;
 
 	public Long getId() {
 		return id;
@@ -86,12 +88,13 @@ public class Product {
 		this.category = category;
 	}
 
-	public Order getOrder() {
-		return order;
+	public List<Items> getItems() {
+		return items;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setItems(List<Items> items) {
+		this.items = items;
 	}
+
 	
 }
