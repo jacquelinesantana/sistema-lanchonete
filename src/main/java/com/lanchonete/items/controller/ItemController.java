@@ -26,4 +26,5 @@ public class ItemController {
 		return ResponseEntity.ok(iRepository.findAll());
 	}
 	
+	
 }
