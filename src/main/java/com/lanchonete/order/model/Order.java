@@ -1,6 +1,7 @@
 package com.lanchonete.order.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lanchonete.client.model.Client;
@@ -31,7 +32,7 @@ public class Order {
 	
 	@ManyToMany
 	@JsonIgnoreProperties("order")
-	private Product product;
+	private List<Product> product;
 
 	private Double totalValue;
 	
@@ -59,11 +60,11 @@ public class Order {
 		this.client = client;
 	}
 
-	public Product getProduct() {
+	public List<Product> getProduct() {
 		return product;
 	}
 
-	public void setProduct(Product product) {
+	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
 

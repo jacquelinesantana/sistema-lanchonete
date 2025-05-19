@@ -28,6 +28,8 @@ public class Product {
 	
 	private Double price;
 	
+	private Long amount;
+	
 	@NotEmpty(message="The atribute Name can't to be empty")
 	private String category;
 	
@@ -57,6 +59,14 @@ public class Product {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Long amount) {
+		this.amount = amount;
 	}
 
 	public String getDescription() {

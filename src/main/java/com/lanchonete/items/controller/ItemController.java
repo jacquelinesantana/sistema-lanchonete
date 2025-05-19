@@ -1,25 +1,29 @@
-package com.lanchonete.product.controller;
+package com.lanchonete.items.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lanchonete.product.model.Product;
-import com.lanchonete.product.repository.ProductRepository;
+import com.lanchonete.items.model.Items;
+import com.lanchonete.items.repository.ItemRepository;
+
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/items")
 @CrossOrigin(origins="*", allowedHeaders="*")
-public class ProductController {
+public class ItemController {
 
 	@Autowired
-	private ProductRepository pRepository;
+	private ItemRepository iRepository;
 	
-	public ResponseEntity<List<Product>> getAll(){
-		return ResponseEntity.ok(pRepository.findAll());
+	@GetMapping
+	public ResponseEntity<List<Items>> getAll(){
+		return ResponseEntity.ok(iRepository.findAll());
 	}
+	
 }
