@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lanchonete.items.model.Items;
+import com.lanchonete.items.model.OrderItems;
 import com.lanchonete.items.repository.ItemRepository;
 
 
@@ -22,7 +22,7 @@ public class ItemController {
 	private ItemRepository iRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Items>> getAll(){
+	public ResponseEntity<List<OrderItems>> getAll(){
 		return ResponseEntity.ok(iRepository.findAll());
 	}
 	

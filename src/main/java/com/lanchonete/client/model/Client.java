@@ -63,8 +63,5 @@ public class Client {
 	public void setOrder(List<Order> order) {
 		this.order = order;
 	}
-
-	
-
 	
 }

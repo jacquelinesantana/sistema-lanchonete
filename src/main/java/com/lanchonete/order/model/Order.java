@@ -5,11 +5,13 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.lanchonete.client.model.Client;
-import com.lanchonete.items.model.Items;
+import com.lanchonete.items.model.OrderItems;
 import com.lanchonete.product.model.Product;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,9 +37,12 @@ public class Order {
 	@JsonIgnoreProperties("order")
 	private Client client;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade=CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade=CascadeType.ALL, orphanRemoval=true)
 	@JsonIgnoreProperties("order")
-	private List<Items> items;
+	private List<OrderItems> orderItems;
+	
+	@Enumerated(EnumType.STRING)
+	private OrderStatus status;
 
 	private Double totalValue;
 
@@ -75,12 +80,12 @@ public class Order {
 		this.client = client;
 	}
 
-	public List<Items> getItems() {
-		return items;
+	public List<OrderItems> getItems() {
+		return orderItems;
 	}
 
-	public void setItems(List<Items> items) {
-		this.items = items;
+	public void setItems(List<OrderItems> orderItems) {
+		this.orderItems = orderItems;
 	}
 
 	public Double getTotalValue() {
@@ -89,6 +94,22 @@ public class Order {
 
 	public void setTotalValue(Double totalValue) {
 		this.totalValue = totalValue;
+	}
+
+	public List<OrderItems> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderItems> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	public OrderStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OrderStatus status) {
+		this.status = status;
 	}
 	
 	

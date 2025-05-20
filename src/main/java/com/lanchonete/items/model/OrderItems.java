@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tb_items")
-public class Items {
+public class OrderItems {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Items {
 	@JsonIgnoreProperties("items")
 	private Product product;
 	
-	private Long amount;
+	private Long quantity;
 	
 	private Double itemValeu;
 
@@ -58,12 +58,14 @@ public class Items {
 		this.product = product;
 	}
 
-	public Long getAmount() {
-		return amount;
+	
+
+	public Long getQuantity() {
+		return quantity;
 	}
 
-	public void setAmount(Long amount) {
-		this.amount = amount;
+	public void setQuantity(Long quantity) {
+		this.quantity = quantity;
 	}
 
 	public Double getItemValeu() {

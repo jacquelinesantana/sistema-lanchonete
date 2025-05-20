@@ -3,7 +3,7 @@ package com.lanchonete.product.model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.lanchonete.items.model.Items;
+import com.lanchonete.items.model.OrderItems;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -37,7 +37,7 @@ public class Product {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade=CascadeType.REMOVE)
 	@JsonIgnoreProperties("product")
-	private List<Items> items;
+	private List<OrderItems> orderItems;
 
 	public Long getId() {
 		return id;
@@ -88,12 +88,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public List<Items> getItems() {
-		return items;
+	public List<OrderItems> getItems() {
+		return orderItems;
 	}
 
-	public void setItems(List<Items> items) {
-		this.items = items;
+	public void setItems(List<OrderItems> orderItems) {
+		this.orderItems = orderItems;
 	}
 
 	
