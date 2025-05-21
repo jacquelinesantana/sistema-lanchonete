@@ -15,23 +15,31 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 
+//anotação entity define a classe como sendo parte da modelagem que refrete no banco de dados
 @Entity
-@Table(name="tb_clients")
+@Table(name="tb_clients")//estamos apenas definindo nome da tabela como sendo tb_clients
 public class Client {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	@Id //anotação que diz que este atributo vai assumir papel de chave primária
+	@GeneratedValue(strategy=GenerationType.IDENTITY) //forma como a chave primária vai ser gerada, identidade da linha sequencia numérica administrada pelo banco
 	private Long id;
 	
-	@NotEmpty(message="The atribute Name can't to be empty")
+	@NotEmpty(message="The atribute Name can't to be empty")//não deve aceitar o atributo name em branco, sem um dado
 	private String name;
 	
-	private Long document;
+	private Long document;//para receber o CPF
 	
+	//tipo de relacionamento definido como um cliente pode ter vários pedidos
+	//a forma como as informações vão ser acionadas no banco será uma busca Lazy, lenta
+	//mapeamento do relacionamento sera o client  então la no json vamos ter que criar esse objeto ao criar um novo pedido
+	//Efeito ao deletar um cliente apaga tbm os pedidos relacionados a este cliente
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade=CascadeType.REMOVE)
-	@JsonIgnoreProperties("client")
-	private List<Order> order;
+	@JsonIgnoreProperties("client") // evitar recursividade ao trazer dados relacionados
+	private List<Order> order; //
 
+	
+	//getteres and setteres para permitir manipular os dados (get - recuperar/ set - imputar)
 	public Long getId() {
 		return id;
 	}
