@@ -22,7 +22,7 @@ public class OrderItems {
 	private Long id;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("items")
+	@JsonIgnoreProperties("orderItems")
 	private Order order;
 	
 	@ManyToOne
