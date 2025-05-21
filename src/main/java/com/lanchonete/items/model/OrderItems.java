@@ -2,7 +2,8 @@ package com.lanchonete.items.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.lanchonete.order.model.Order;
 import com.lanchonete.product.model.Product;
 
@@ -15,6 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tb_items")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class OrderItems {
 	
 	@Id
@@ -22,12 +24,10 @@ public class OrderItems {
 	private Long id;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("orderItems")
-	private Order order;
-	
+	private Order order; // Removido @JsonBackReference
+
 	@ManyToOne
-	@JsonIgnoreProperties("orderItems")
-	private Product product;
+	private Product product; // Removido @JsonBackReference
 	
 	private Long quantity;
 	
@@ -40,7 +40,6 @@ public class OrderItems {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Order getOrder() {
 		return order;
@@ -57,9 +56,7 @@ public class OrderItems {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
 	
-
 	public Long getQuantity() {
 		return quantity;
 	}
@@ -75,5 +72,4 @@ public class OrderItems {
 	public void setItemValeu(Double itemValeu) {
 		this.itemValeu = itemValeu;
 	}
-	
 }

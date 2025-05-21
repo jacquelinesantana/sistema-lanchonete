@@ -1,12 +1,13 @@
 package com.lanchonete.order.model;
 
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.lanchonete.client.model.Client;
 import com.lanchonete.items.model.OrderItems;
-import com.lanchonete.product.model.Product;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -16,13 +17,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tb_orders")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Order {
 
 	@Id
@@ -34,12 +35,10 @@ public class Order {
 	private Double discountValue;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("order")
-	private Client client;
+	private Client client; // Removido @JsonIgnoreProperties
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade=CascadeType.ALL, orphanRemoval=true)
-	@JsonIgnoreProperties("order")
-	private List<OrderItems> orderItems;
+	private List<OrderItems> orderItems; // Removido @JsonManagedReference
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
@@ -69,9 +68,7 @@ public class Order {
 	public void setDiscountValue(Double discountValue) {
 		this.discountValue = discountValue;
 	}
-
 	
-
 	public Client getClient() {
 		return client;
 	}
@@ -80,11 +77,12 @@ public class Order {
 		this.client = client;
 	}
 
-	public List<OrderItems> getItems() {
+	// Mantido apenas um par de getter/setter para orderItems
+	public List<OrderItems> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setItems(List<OrderItems> orderItems) {
+	public void setOrderItems(List<OrderItems> orderItems) {
 		this.orderItems = orderItems;
 	}
 
@@ -96,14 +94,6 @@ public class Order {
 		this.totalValue = totalValue;
 	}
 
-	public List<OrderItems> getOrderItems() {
-		return orderItems;
-	}
-
-	public void setOrderItems(List<OrderItems> orderItems) {
-		this.orderItems = orderItems;
-	}
-
 	public OrderStatus getStatus() {
 		return status;
 	}
@@ -111,6 +101,4 @@ public class Order {
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
-	
-	
 }

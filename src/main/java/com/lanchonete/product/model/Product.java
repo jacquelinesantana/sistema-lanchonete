@@ -2,7 +2,9 @@ package com.lanchonete.product.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.lanchonete.items.model.OrderItems;
 
 import jakarta.persistence.CascadeType;
@@ -15,8 +17,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 
+
+
 @Entity
 @Table(name="tb_products")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product {
 
 	@Id
@@ -36,8 +41,7 @@ public class Product {
 	private String category;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade=CascadeType.REMOVE)
-	@JsonIgnoreProperties("product")
-	private List<OrderItems> orderItems;
+	private List<OrderItems> orderItems; // Removido @JsonManagedReference
 
 	public Long getId() {
 		return id;
@@ -79,7 +83,6 @@ public class Product {
 		this.description = description;
 	}
 	
-
 	public String getCategory() {
 		return category;
 	}
@@ -88,13 +91,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public List<OrderItems> getItems() {
+    // Mantido apenas um par de getter/setter para orderItems, usando o nome consistente
+	public List<OrderItems> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setItems(List<OrderItems> orderItems) {
+	public void setOrderItems(List<OrderItems> orderItems) {
 		this.orderItems = orderItems;
 	}
-
-	
 }
