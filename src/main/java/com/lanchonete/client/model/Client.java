@@ -14,7 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 
 
 
@@ -27,10 +27,10 @@ public class Client {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="The atribute Name can't to be empty")
+	@NotBlank(message="The atribute Name can't to be empty")
 	private String name;
 	
-	private Long document;
+	private String document;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade=CascadeType.REMOVE)
 	private List<Order> order; // Removido @JsonManagedReference
@@ -51,11 +51,13 @@ public class Client {
 		this.name = name;
 	}
 
-	public Long getDocument() {
+	
+
+	public String getDocument() {
 		return document;
 	}
 
-	public void setDocument(Long document) {
+	public void setDocument(String document) {
 		this.document = document;
 	}
 
