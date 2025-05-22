@@ -13,9 +13,9 @@ import com.lanchonete.items.model.OrderItems;
 import com.lanchonete.items.repository.ItemRepository;
 import com.lanchonete.order.model.Order;
 import com.lanchonete.order.model.OrderStatus;
+import com.lanchonete.order.repository.OrderRepository;
 import com.lanchonete.product.model.Product;
 import com.lanchonete.product.service.ProductService;
-import com.lanchonete.repository.OrderRepository;
 
 @Service
 public class OrderService {

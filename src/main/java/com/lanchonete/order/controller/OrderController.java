@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lanchonete.order.model.Order;
+import com.lanchonete.order.repository.OrderRepository;
 import com.lanchonete.order.service.OrderService;
 import com.lanchonete.order.service.OrderService.OrderItemRequest;
-import com.lanchonete.repository.OrderRepository;
 
 @RestController
 @RequestMapping("/orders")

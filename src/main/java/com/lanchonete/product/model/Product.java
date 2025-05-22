@@ -37,7 +37,7 @@ public class Product {
 	
 	private Long amount;
 	
-	@NotEmpty(message="The atribute Name can't to be empty")
+	@NotEmpty(message="The atribute category can't to be empty")
 	private String category;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product", cascade=CascadeType.REMOVE)
