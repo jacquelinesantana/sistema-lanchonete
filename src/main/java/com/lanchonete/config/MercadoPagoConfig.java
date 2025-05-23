@@ -10,7 +10,7 @@ import jakarta.annotation.PostConstruct;
 @Configuration
 public class MercadoPagoConfig {
 	
-	@Value("bearer APP_USR-4934588586838432-XXXXXXXX-241983636")
+	@Value("TEST-6329425028869907-042119-fa26ce885dddcc30ed3339e3e89c549f-46313882")
 	private String accessToken;
 	
 	@PostConstruct
