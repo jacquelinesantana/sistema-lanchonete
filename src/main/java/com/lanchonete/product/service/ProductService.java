@@ -24,7 +24,7 @@ public class ProductService {
 	        this.pRepository = pRepository;
 	    }
 
-	    public List<Product> listarTodos() {
+	    public List<Product> listAll() {
 	        return pRepository.findAll();
 	    }
 

@@ -32,14 +32,14 @@ public class ClientContollerTest {
 	private ClientRepository clientRepository;
 	private static final String BASE_URL_CLIENTS = "/clients";
 	
-	@BeforeAll
+	@BeforeAll //esse será executado antes dos testes para preparar ambiente dessa classe
 	void start() {
 		clientRepository.deleteAll();//apagar os registros do banco de teste
 		clientRepository.save(TestConfig.dataClient());//cria o primeiro cliente
 	}
 	
 	@Test
-	@DisplayName("Try post a new client")
+	@DisplayName("Try post a new client")//nome do teste
 	public void tryPostANewClient() {
 		Client client = TestConfig.newClient(null, "Pedro", "1234567891");
 		
