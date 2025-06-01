@@ -15,7 +15,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.lanchonete.client.model.Client;
 import com.lanchonete.product.config.TestConfigProduct;
 import com.lanchonete.product.model.Product;
 import com.lanchonete.product.repository.ProductRepository;
