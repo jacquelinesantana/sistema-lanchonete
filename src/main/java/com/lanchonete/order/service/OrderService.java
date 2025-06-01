@@ -97,8 +97,8 @@ public class OrderService {
             return quantity;
         }
 
-        public void setQuantity(Long quantity) {
-            this.quantity = quantity;
+        public void setQuantity(Long i) {
+            this.quantity = i;
         }
     }
 
